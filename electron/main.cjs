@@ -17,6 +17,8 @@ async function createWindow() {
   if (process.env.NODE_ENV === 'development') {
     await waitOn({ resources: ['http://localhost:5173'] }); 
     win.loadURL('http://localhost:5173');
+    win.webContents.openDevTools(); // Electron 창의 콘솔 보기
+
   } else {
     win.loadFile(path.join(__dirname, '../dist/index.html')); 
   }

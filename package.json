@@ -5,11 +5,11 @@
   "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"electron .\"",
+    "dev": "concurrently \"vite\" \"cross-env NODE_ENV=development electron electron/main.cjs\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "electron": "electron ."
+    "electron": "cross-env NODE_ENV=development electron electron/main.cjs"
   },
   "dependencies": {
     "react": "^19.1.0",
