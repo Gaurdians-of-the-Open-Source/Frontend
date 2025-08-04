@@ -3,8 +3,8 @@ import logo from "../../assets/logo.png";
 
 export default function Home() {
   return (
-    <div className="background">
-      <div className="content-box">
+    <div className="wrapper">
+      <div className="ratio-box">
         <header className="header">
           <div className="left-box">
             <img src={logo} alt="LV.0 Logo" className="logo" />
@@ -12,6 +12,7 @@ export default function Home() {
               <a href="#home" className="nav-item">home</a>
               <a href="#about" className="nav-item">about</a>
               <a href="#how" className="nav-item">how it works</a>
+              <a href="#project" className="nav-item">project</a>
             </div>
           </div>
 
