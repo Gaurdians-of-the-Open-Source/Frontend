@@ -26,8 +26,18 @@ export default function Home() {
         </header>
 
         <main className="main">
-          <h1>Welcome</h1>
-          <p>main페이지 부분은 아직 아무것도 넣을게 없으니 빈칸으로 둘게요 </p>
+          <div className="text-box">
+            <h1>
+              LLM-powered <br />
+              Vulnerability Reporter <br />
+              for your Open Source
+            </h1>
+            <p>
+              Protect vulnerabilities in your codebase with the power of LLMs and static analysis<br />
+              - No more vulnerabilities: LV.0
+            </p>
+            <button className="get-started">Get Started ↗</button>
+          </div>
         </main>
       </div>
     </div>

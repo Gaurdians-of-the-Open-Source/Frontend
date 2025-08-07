@@ -1,101 +1,144 @@
- .background {
-  width: 100vw;
-  height: 100vh;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+ .wrapper {
+   width: 100vw;
+   height: 100vh;
+   background: #ffffff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
 
-.content-box {
-  width: 89%;
-  height: 85%;
-  background: linear-gradient(135deg, #d8f0ff, #eef0ff);
-  border-radius: 35px;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-  padding-left: 10px;
-  padding-top: 15px;
-}
+ .ratio-box {
+   width: 89%;
+   height: 85%;
+   background: linear-gradient(135deg, #d8f0ff, #eef0ff);
+   border-radius: 35px;
+   padding: 1.5rem 2rem;
+   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+   position: relative;
+   overflow: hidden;
+   padding-left: 10px;
+   padding-top: 15px;
+ }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
-}
+ .header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 100px;
+ }
 
-/* 왼쪽 박스 안에 로고 + nav 같이 배치 */
-.left-box {
-  display: flex;
-  align-items: center;
-  gap: 20px; /* 로고와 nav 사이 간격 */
-}
+ /* 왼쪽 박스 안에 로고 + nav 같이 배치 */
+ .left-box {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   /* 로고와 nav 사이 간격 */
+ }
 
-.logo {
-  height: 170px !important;
-  width: auto !important;
-  margin-left: -20px;
-  margin-top: -5px;
-  flex-shrink: 0;
-}
+ .logo {
+   height: 170px !important;
+   width: auto !important;
+   margin-left: -20px;
+   margin-top: -5px;
+   flex-shrink: 0;
+ }
 
-/* >>> 네비게이션 pill 스타일 <<< */
-.nav-group {
-  display: inline-flex;
-  background: linear-gradient(to right, #cfd9ff, #a6c1ee);
-  border-radius: 40px;
-  padding: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
+ /* >>> 네비게이션 pill 스타일 <<< */
+ .nav-group {
+   display: inline-flex;
+   background: linear-gradient(to right, #cfd9ff, #a6c1ee);
+   border-radius: 40px;
+   padding: 6px;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+ }
 
-.nav-item {
-  padding: 10px 26px;       /* 살짝 줄임 */
-  font-size: 26px;          /* 기존보다 크게 */
-  border-radius: 30px;
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
+ .nav-item {
+   padding: 10px 26px;
+   font-size: 26px;
+   border-radius: 30px;
+   text-decoration: none;
+   color: #000033;
+   font-weight: 600;
+   transition: all 0.2s ease;
+ }
 
-.nav-item:hover {
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  color: #4a4a4a;
-}
+ .nav-item:hover {
+   background-color: white;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   color: #4a4a4a;
+ }
 
-/* >>> 우측 버튼 영역 <<< */
-.right-buttons {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+ /* >>> 우측 버튼 영역 <<< */
+ .right-buttons {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+ }
 
-.lang-select,
-.contact-btn {
-  padding: 14px 30px;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 30px;
-  color: black;
-  background: transparent;
-  border: 2px solid;
+ .lang-select,
+ .contact-btn {
+   padding: 14px 30px;
+   font-size: 20px;
+   font-weight: 600;
+   border-radius: 30px;
+   color: black;
+   background: transparent;
+   border: 2px solid;
 
-  box-shadow: 0 3px 8px rgba(139, 207, 233, 0.1);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+   box-shadow: 0 3px 8px rgba(139, 207, 233, 0.1);
+   cursor: pointer;
+   transition: all 0.2s ease;
+ }
 
-.lang-select:hover,
-.contact-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+ .lang-select:hover,
+ .contact-btn:hover {
+   background: rgba(255, 255, 255, 0.3);
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ }
 
-.main {
-  margin-top: 3rem;
-  text-align: center;
-}  
+ .main {
+   display: flex;
+   justify-content: flex-start;
+   /* 왼쪽 정렬 */
+   align-items: flex-start;
+   /* 위쪽 정렬 */
+   height: 70%;
+   padding: 0.5rem 2rem;
+   /* 위·왼쪽 여백 조절 */
+   gap: 4rem;
+   /* 오른쪽 공간 확보 */
+ }
+
+ .text-box {
+   flex: 1;
+   max-width: 650px;
+   text-align: left;
+   margin-top: 0.01rem;
+ }
+
+ .text-box h1 {
+   font-size: 3.5rem;
+   font-weight: 700;
+   line-height: 1.3;
+   margin-bottom: 1rem;
+   color: #000033;
+ }
+
+ .text-box p {
+   font-size: 1rem;
+   color: #4169E1;
+   line-height: 1.6;
+   margin-bottom: 2.3rem;
+ }
+
+ .get-started {
+   background: transparent;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+   border: 1px solid #cacefb;
+   border-radius: 40px;
+   color: #000033;
+ }
+
+ .get-started:hover {
+   background: rgba(0, 0, 0, 0.05);
+ }
