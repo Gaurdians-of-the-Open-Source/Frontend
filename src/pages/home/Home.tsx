@@ -24,11 +24,6 @@ export default function Home() {
             <button className="contact-btn">Contact us</button>
           </div>
         </header>
-
-        <main className="main">
-          <h1>Welcome</h1>
-          <p>main페이지 부분은 아직 아무것도 넣을게 없으니 빈칸으로 둘게요 </p>
-        </main>
       </div>
     </div>
   );
