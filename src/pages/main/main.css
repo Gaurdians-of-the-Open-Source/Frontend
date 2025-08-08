@@ -1,0 +1,102 @@
+ .wrapper {
+     width: 100vw;
+     height: 100vh;
+     background: #ffffff;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .ratio-box {
+     width: 89%;
+     height: 85%;
+     background: linear-gradient(135deg, #d8f0ff, #eef0ff);
+     border-radius: 35px;
+     padding: 1.5rem 2rem;
+     box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+     position: relative;
+     overflow: hidden;
+     padding-left: 10px;
+     padding-top: 15px;
+ }
+
+ .header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     height: 100px;
+ }
+
+ /* 왼쪽 박스 안에 로고 + nav 같이 배치 */
+ .left-box {
+     display: flex;
+     align-items: center;
+     gap: 20px;
+     /* 로고와 nav 사이 간격 */
+ }
+
+ .logo {
+     height: 170px !important;
+     width: auto !important;
+     margin-left: -20px;
+     margin-top: -5px;
+     flex-shrink: 0;
+ }
+
+ /* >>> 네비게이션 pill 스타일 <<< */
+ .nav-group {
+     display: inline-flex;
+     background: linear-gradient(to right, #cfd9ff, #a6c1ee);
+     border-radius: 40px;
+     padding: 6px;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+ }
+
+ .nav-item {
+     padding: 10px 26px;
+     font-size: 26px;
+     border-radius: 30px;
+     text-decoration: none;
+     color: black;
+     font-weight: 600;
+     transition: all 0.2s ease;
+ }
+
+ .nav-item:hover {
+     background-color: white;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+     color: #4a4a4a;
+ }
+
+ /* >>> 우측 버튼 영역 <<< */
+ .right-buttons {
+     display: flex;
+     align-items: center;
+     gap: 16px;
+ }
+
+ .lang-select,
+ .contact-btn {
+     padding: 14px 30px;
+     font-size: 20px;
+     font-weight: 600;
+     border-radius: 30px;
+     color: black;
+     background: transparent;
+     border: 2px solid;
+
+     box-shadow: 0 3px 8px rgba(139, 207, 233, 0.1);
+     cursor: pointer;
+     transition: all 0.2s ease;
+ }
+
+ .lang-select:hover,
+ .contact-btn:hover {
+     background: rgba(255, 255, 255, 0.3);
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ .main {
+     margin-top: 3rem;
+     text-align: center;
+ }
