@@ -6,14 +6,13 @@ import { PiFolderSimpleFill } from "react-icons/pi";
 
 type ProjectItem = { id: number; name: string };
 
-const PAGE_SIZE = 6; // 3x2
+const PAGE_SIZE = 6;
 const LS_KEY = "lv0_projects_grid_v4";
 
 export default function ProjectPage() {
     const [projects, setProjects] = useState<ProjectItem[]>([]);
     const [page, setPage] = useState(1);
 
-    // load
     useEffect(() => {
         const saved = localStorage.getItem(LS_KEY);
         if (saved) {
@@ -23,15 +22,12 @@ export default function ProjectPage() {
         }
     }, []);
 
-    // persist
     useEffect(() => {
         localStorage.setItem(LS_KEY, JSON.stringify(projects));
     }, [projects]);
 
-    // New까지 포함해 페이지 수 계산
     const pageCount = Math.max(1, Math.ceil((projects.length + 1) / PAGE_SIZE));
 
-    // 현재 페이지 아이템
     const currentPageItems = useMemo(() => {
         const start = (page - 1) * PAGE_SIZE;
         return projects.slice(start, start + PAGE_SIZE);
@@ -41,8 +37,6 @@ export default function ProjectPage() {
         const nextNum = projects.length + 1;
         const next = [...projects, { id: Date.now(), name: `Project ${nextNum}` }];
         setProjects(next);
-
-        // 현재 페이지가 꽉 찼으면 New는 다음 페이지로 → 마지막 페이지로 이동
         const isCurrentFull = currentPageItems.length >= PAGE_SIZE;
         if (isCurrentFull) {
             const nextPageCount = Math.ceil((next.length + 1) / PAGE_SIZE);
@@ -74,7 +68,6 @@ export default function ProjectPage() {
                 </header>
 
                 <main className="content">
-                    {/* 처음엔 중앙에 New만 */}
                     {projects.length === 0 ? (
                         <div className="center-wrap">
                             <button
@@ -93,7 +86,6 @@ export default function ProjectPage() {
                     ) : (
                         <>
                             <div className="project-grid fixed-3x2">
-                                {/* 현재 페이지 프로젝트 */}
                                 {currentPageItems.map((p) => (
                                     <button
                                         key={p.id}
@@ -108,7 +100,6 @@ export default function ProjectPage() {
                                     </button>
                                 ))}
 
-                                {/* 현재 페이지가 6칸 미만일 때만 New 표시 */}
                                 {currentPageItems.length < PAGE_SIZE && (
                                     <button
                                         className="project-card new"
