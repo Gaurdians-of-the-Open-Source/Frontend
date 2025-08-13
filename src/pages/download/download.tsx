@@ -39,7 +39,6 @@ export default function Report() {
                         <div className="summary-pane">
                             <h2 className="summary-title">Report Summary</h2>
                         </div>
-
                         <div className="summary-actions">
                             <button className="btn pill primary">
                                 <FiDownload className="btn-ic-left" />

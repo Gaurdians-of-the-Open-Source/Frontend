@@ -209,7 +209,7 @@
     overflow: hidden;
 }
 
-/*Report Download & Upload Another File 버튼*/
+/*download&upload 버튼*/
 .btn {
     height: 64px;
     border: none;
