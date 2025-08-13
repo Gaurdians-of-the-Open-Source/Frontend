@@ -1,0 +1,252 @@
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ratio-box {
+    width: 89%;
+    height: 85%;
+    background: linear-gradient(135deg, #d8f0ff, #eef0ff);
+    border-radius: 35px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.left-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 170px !important;
+    width: auto !important;
+    margin-left: -20px;
+    margin-top: -5px;
+    flex-shrink: 0;
+}
+
+.nav-group {
+    display: inline-flex;
+    background: linear-gradient(to right, #cfd9ff, #a6c1ee);
+    border-radius: 40px;
+    padding: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+    padding: 10px 26px;
+    font-size: 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #000033;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #4a4a4a;
+}
+
+.right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.lang-select,
+.contact-btn {
+    padding: 14px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 30px;
+    color: black;
+    background: transparent;
+    border: 2px solid;
+    box-shadow: 0 3px 8px rgba(139, 207, 233, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-select:hover,
+.contact-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.report-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 26px;
+    height: calc(100% - 100px);
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.report-pane,
+.summary-section {
+    height: 100%;
+    min-height: 0;
+}
+
+.report-pane {
+    background: #ffffff;
+    border-radius: 0;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.06);
+}
+
+.pane-head {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 85px;
+    padding-bottom: 5px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
+}
+
+.pane-logo {
+    height: 60px;
+    width: auto;
+    opacity: 0.95;
+}
+
+.pane-head h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    color: #000033;
+}
+
+/* 스크롤 영역 */
+.report-scroll {
+    margin-top: 12px;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-right: 8px;
+}
+
+.report-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.report-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.report-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.report-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.report-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, .15) transparent;
+}
+
+.report-scroll:hover {
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.summary-pane {
+    background: #ffffff;
+    border-radius: 0;
+    padding: 20px 20px;
+    height: 58%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.summary-pane h2 {
+    margin-top: 1px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #000033;
+}
+
+.summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    overflow: hidden;
+}
+
+/*Report Download & Upload Another File 버튼*/
+.btn {
+    height: 64px;
+    border: none;
+    font-size: 19px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform .06s ease, box-shadow .2s ease;
+    color: #000033;
+}
+
+.pill {
+    border-radius: 9999px;
+}
+
+.btn-ic-left {
+    font-size: 24px;
+    margin-right: 6px;
+}
+
+.btn.primary {
+    background: rgba(204, 214, 255, 0.9);
+    box-shadow: 0 6px 16px rgba(80, 90, 255, 0.15);
+}
+
+.btn.primary:hover {
+    transform: translateY(-1px);
+}
+
+.btn.ghost {
+    background: rgba(204, 214, 255, 0.7);
+    box-shadow: 0 6px 16px rgba(80, 90, 255, 0.08);
+}
+
+.btn.ghost:hover {
+    transform: translateY(-1px);
+}
