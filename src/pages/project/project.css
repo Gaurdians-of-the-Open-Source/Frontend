@@ -1,0 +1,255 @@
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ratio-box {
+    width: 89%;
+    height: 85%;
+    background: linear-gradient(135deg, #d8f0ff, #eef0ff);
+    border-radius: 35px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+/* 왼쪽: 로고 + 네비 */
+.left-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 170px !important;
+    width: auto !important;
+    margin-left: -20px;
+    margin-top: -5px;
+    flex-shrink: 0;
+}
+
+/* 네비 pill */
+.nav-group {
+    display: inline-flex;
+    background: linear-gradient(to right, #cfd9ff, #a6c1ee);
+    border-radius: 40px;
+    padding: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+    padding: 10px 26px;
+    font-size: 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+    color: #4a4a4a;
+}
+
+/* 우측 버튼 */
+.right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.lang-select,
+.contact-btn {
+    padding: 14px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 30px;
+    color: black;
+    background: transparent;
+    border: 2px solid;
+    box-shadow: 0 3px 8px rgba(139, 207, 233, .1);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.lang-select:hover,
+.contact-btn:hover {
+    background: rgba(255, 255, 255, .3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 100px);
+}
+
+.center-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.project-grid.fixed-3x2 {
+    display: grid;
+    grid-template-columns: repeat(3, 220px);
+    grid-template-rows: repeat(2, 200px);
+    gap: 20px 30px;
+    justify-content: center;
+    align-content: start;
+    margin: 20px auto 0;
+    width: fit-content;
+}
+
+.project-card {
+    background: #fff;
+    width: 180px;
+    height: 180px;
+    border-radius: 50px;
+    box-shadow: 0 8px 18px rgba(20, 30, 60, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    padding: 0;
+    gap: 0;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(20, 30, 60, .12);
+}
+
+/* 폴더+텍스트 */
+.folder-with-text {
+    position: relative;
+    display: inline-block;
+}
+
+/* 아이콘 사이즈/색상 */
+.folder-icon {
+    font-size: 175px;
+    color: #cfc9ff;
+    display: block;
+}
+
+/* 폴더 안 중앙 텍스트 */
+.folder-label {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 470;
+    color: #0e1330;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* New Project의 + 오버레이 */
+.project-card.new .plus {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    font-size: 24px;
+    font-weight: 700;
+    color: #202338;
+    pointer-events: none;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+/* 공통 버튼 리셋 */
+.page-btn {
+    border: none;
+    background: transparent;
+    color: #1e1f2a;
+    cursor: pointer;
+    transition: transform .15s ease, background-color .15s ease, color .15s ease, opacity .15s ease;
+    user-select: none;
+}
+
+/* 숫자 버튼 */
+.page-btn.number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+/* 숫자 hover 시 옅은 회색 원 */
+.page-btn.number:hover:not(.active) {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* 활성 숫자: 보라색 원 */
+.page-btn.number.active {
+    background: #7b67ff;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* 화살표 버튼 */
+.page-btn.arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    /* 🔹 flex로 변경 */
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.06);
+    color: #3a3b47;
+}
+
+.page-btn.arrow:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.10);
+}
+
+/* 비활성 상태 */
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* 클릭 눌림 효과 */
+.page-btn:active:not(:disabled) {
+    transform: translateY(1px);
+}

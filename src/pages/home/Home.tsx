@@ -1,7 +1,10 @@
 import "./home.css";
 import logo from "../../assets/logo.png";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="wrapper">
       <div className="ratio-box">
@@ -9,10 +12,10 @@ export default function Home() {
           <div className="left-box">
             <img src={logo} alt="LV.0 Logo" className="logo" />
             <div className="nav-group">
-              <a href="#home" className="nav-item">home</a>
-              <a href="#about" className="nav-item">about</a>
-              <a href="#how" className="nav-item">how it works</a>
-              <a href="#project" className="nav-item">project</a>
+              <Link to="/home" className="nav-item">home</Link>
+              <Link to="/about" className="nav-item">about</Link>
+              <Link to="/how" className="nav-item">how it works</Link>
+              <Link to="/project" className="nav-item">project</Link>
             </div>
           </div>
 
@@ -36,10 +39,16 @@ export default function Home() {
               Protect vulnerabilities in your codebase with the power of LLMs and static analysis<br />
               - No more vulnerabilities: LV.0
             </p>
-            <button className="get-started">Get Started ↗</button>
+            <button
+              className="get-started"
+              onClick={() => navigate("/analyzing")}
+            >
+              Get Started ↗
+            </button>
           </div>
         </main>
       </div>
     </div>
   );
 }
+
