@@ -8,15 +8,17 @@
 }
 
 .ratio-box {
-  overflow-y: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  width: 89%;
+  height: 85%;
+  background: linear-gradient(135deg, #d8f0ff, #eef0ff);
+  border-radius: 35px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+  padding-left: 10px;
+  padding-top: 15px;
 }
-
-.ratio-box::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, Opera */
-}
-
 
 .header {
   display: flex;
@@ -25,6 +27,7 @@
   height: 100px;
 }
 
+/* 왼쪽: 로고 + 네비 */
 .left-box {
   display: flex;
   align-items: center;
@@ -39,6 +42,7 @@
   flex-shrink: 0;
 }
 
+/* 네비 pill */
 .nav-group {
   display: inline-flex;
   background: linear-gradient(to right, #cfd9ff, #a6c1ee);
@@ -52,17 +56,18 @@
   font-size: 26px;
   border-radius: 30px;
   text-decoration: none;
-  color: black;
+  color: #000033;
   font-weight: 600;
   transition: all 0.2s ease;
 }
 
 .nav-item:hover {
-  background-color: white;
+  background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   color: #4a4a4a;
 }
 
+/* 오른쪽 버튼 */
 .right-buttons {
   display: flex;
   align-items: center;
@@ -94,9 +99,12 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 세로 중앙 */
-  align-items: center; /* 가로 중앙 */
-  gap: 20px; /* 박스 간격 */
+  justify-content: center;
+  /* 세로 중앙 */
+  align-items: flex-end;
+  /* 가로 중앙 */
+  gap: 20px;
+  /* 박스 간격 */
 }
 
 .upload-box {
@@ -169,7 +177,7 @@
   height: 90px;
   border-radius: 15px;
   background: linear-gradient(135deg, #d8f0ff, #eef0ff);
-  border: 2.35px solid rgba(122, 165, 255, 0.6); 
+  border: 2.35px solid rgba(122, 165, 255, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -209,7 +217,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500; 
+  font-weight: 500;
   margin-bottom: 4px;
   color: #13113b;
 }
@@ -291,9 +299,8 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
-
-

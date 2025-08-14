@@ -1,15 +1,15 @@
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
+import Upload from "./pages/upload/Upload";
+import "./App.css";
 
-
-import React from "react";
-import Home from './pages/home/Home'; // 대소문자 주의!
-import "./App.css"; // 필요 시 유지
-
-
-
-function App() {
+export default function App() {
   return (
-    <Home />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/upload" element={<Upload />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;

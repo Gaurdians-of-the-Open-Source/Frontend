@@ -1,8 +1,11 @@
 import "./home.css";
 import logo from "../../assets/logo.png";
-import badge from "../../assets/벡터.png"; // ← 오른쪽에 넣을 이미지
+import badge from "../../assets/벡터.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="wrapper">
       <div className="ratio-box">
@@ -37,7 +40,12 @@ export default function Home() {
               Protect vulnerabilities in your codebase with the power of LLMs and static analysis<br />
               - No more vulnerabilities: LV.0
             </p>
-            <button className="get-started">Get Started ↗</button>
+            <button
+              className="get-started"
+              onClick={() => navigate("/upload")}
+            >
+              Get Started ↗
+            </button>
           </div>
 
           <div className="image-box">
