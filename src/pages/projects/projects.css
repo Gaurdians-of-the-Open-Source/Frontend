@@ -1,0 +1,376 @@
+:root {
+    --ink: #0a0d2b;
+    --ink-2: #4b5581;
+    --muted: #8b93b7;
+    --white: #ffffff;
+    --bg1: #d8f0ff;
+    --bg2: #eef0ff;
+    --ring: #cbd6ff;
+    --primary: #5b70ff;
+    --ok: #2fb66d;
+    --warn: #f4ad3d;
+    --err: #ff6b5b;
+    --scrollbar-w: 10px;
+}
+
+/* 화면 전체 */
+.wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    /* 필요 시 페이지 자체 스크롤 허용 */
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 안쪽 그라디언트 박스 – 더 길게 */
+.ratio-box {
+    width: 89%;
+    height: calc(100vh - 60px);
+    /* 세로 더 확보 (기존 85%보다 큼) */
+    max-height: 900px;
+    /* 너무 커지는 것 방지 */
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    border-radius: 35px;
+    padding: 18px 24px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .05);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: visible;
+    /* 내부 요소가 잘리지 않게 */
+}
+
+/* ===== 상단 헤더 ===== */
+.header {
+    flex: 0 0 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 150px !important;
+    width: auto !important;
+    margin-left: -10px;
+    margin-top: -6px;
+    flex-shrink: 0;
+}
+
+.nav-group {
+    display: inline-flex;
+    background: linear-gradient(to right, #cfd9ff, #a6c1ee);
+    border-radius: 999px;
+    padding: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+}
+
+.nav-item {
+    padding: 10px 26px;
+    font-size: 22px;
+    border-radius: 28px;
+    text-decoration: none;
+    color: #111;
+    font-weight: 700;
+    letter-spacing: .2px;
+    transition: all .18s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .18);
+    color: #3a3a54;
+}
+
+.right-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lang-select,
+.contact-btn {
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 28px;
+    color: #111;
+    background: transparent;
+    border: 2px solid #b7c7ff;
+    box-shadow: 0 3px 8px rgba(139, 207, 233, .1);
+    cursor: pointer;
+    transition: all .18s ease;
+}
+
+.lang-select:hover,
+.contact-btn:hover {
+    background: rgba(255, 255, 255, .35);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .18);
+}
+
+/* ===== 프로젝트 카드: 그리드로 구성해 하단이 안 잘리게 ===== */
+.project-card {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 6px 8px 10px;
+    border-radius: 26px;
+    padding: 28px 32px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(22, 35, 90, .06);
+
+    /* 핵심: 4구역 */
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    /* 제목 / 컨트롤 / 표 / 버튼 */
+    row-gap: 14px;
+    overflow: hidden;
+    /* 둥근 모서리 유지 */
+}
+
+.project-title {
+    font-size: 44px;
+    line-height: 1.18;
+    font-weight: 800;
+    color: #030c3f;
+    margin: 4px 0 8px;
+}
+
+/* 컨트롤 바 */
+.project-controls {
+    display: flex;
+    gap: 16px;
+    margin: 4px 0 0;
+    flex-wrap: wrap;
+}
+
+.status-filter,
+.search-input {
+    height: 46px;
+    border-radius: 14px;
+    border: 1.6px solid var(--ring);
+    padding: 0 14px;
+    font-size: 16px;
+    background: #fff;
+}
+
+.status-filter {
+    min-width: 300px;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 320px;
+}
+
+.status-filter:focus,
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(91, 112, 255, .22);
+    outline: none;
+}
+
+/* ===== 표 – 헤더는 고정, 바디만 스크롤 ===== */
+.file-table {
+    border: 1px solid #e4e8ff;
+    border-radius: 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* 고정 헤더(스크롤 영향 없음) */
+.file-header {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1.1fr .8fr;
+    align-items: center;
+    padding: 14px 18px;
+    min-height: 60px;
+    background: #f3f6ff;
+    color: #2f3b74;
+    font-weight: 800;
+
+    /* 스크롤바 공간만큼 우측 보정 (크로스브라우저) */
+    padding-right: calc(18px + var(--scrollbar-w));
+}
+
+/* 스크롤 영역 */
+.file-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* 스크롤바 스타일 */
+    scrollbar-width: thin;
+    scrollbar-color: #9ea8ff transparent;
+    scrollbar-gutter: stable both-edges;
+}
+
+.file-body::-webkit-scrollbar {
+    width: var(--scrollbar-w);
+}
+
+.file-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.file-body::-webkit-scrollbar-thumb {
+    background: #9ea8ff;
+    border-radius: 6px;
+}
+
+.file-body::-webkit-scrollbar-thumb:hover {
+    background: #7e89ff;
+}
+
+/* 행 */
+.file-row {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1.1fr .8fr;
+    align-items: center;
+    padding: 14px 18px;
+    min-height: 60px;
+    background: #fff;
+    border-top: 1px solid #eef2ff;
+}
+
+.file-row:hover {
+    background: #f9fbff;
+}
+
+/* 셀 */
+.file-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #0c1b5e;
+}
+
+.file-name svg {
+    font-size: 18px;
+}
+
+.file-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+}
+
+.file-status svg {
+    font-size: 18px;
+}
+
+.file-status.analyzed {
+    color: var(--ok);
+}
+
+.file-status.in-progress {
+    color: var(--warn);
+}
+
+.file-status.error {
+    color: var(--err);
+}
+
+.file-date {
+    color: #6b7398;
+}
+
+.file-report {
+    display: flex;
+    align-items: center;
+}
+
+.view-btn {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 10px;
+    border: none;
+    background: #cfd8ff;
+    color: #1a2568;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    filter: brightness(.97);
+}
+
+.no-report {
+    color: #a5abc5;
+}
+
+/* 하단 버튼(항상 보임) */
+.project-actions {
+    display: flex;
+    gap: 16px;
+    align-self: start;
+}
+
+.upload-btn,
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 56px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .04);
+}
+
+.upload-btn {
+    background: #e0e5ff;
+    color: #101a5a;
+}
+
+.download-btn {
+    background: #e9fbf0;
+    color: #135733;
+}
+
+.upload-btn:hover,
+.download-btn:hover {
+    filter: brightness(.98);
+}
+
+/* 반응형 */
+@media (max-width:900px) {
+
+    .file-header,
+    .file-row {
+        grid-template-columns: 1.2fr 1fr 1fr .8fr;
+    }
+
+    .right-buttons {
+        display: none;
+    }
+}
+
+@media (max-width:640px) {
+    .project-title {
+        font-size: 32px;
+    }
+
+    .status-filter {
+        min-width: 220px;
+    }
+
+    .nav-group {
+        display: none;
+    }
+}
