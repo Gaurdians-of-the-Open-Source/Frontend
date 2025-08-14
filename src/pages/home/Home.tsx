@@ -1,5 +1,6 @@
 import "./home.css";
 import logo from "../../assets/logo.png";
+import badge from "../../assets/벡터.png"; // ← 오른쪽에 넣을 이미지
 
 export default function Home() {
   return (
@@ -38,9 +39,12 @@ export default function Home() {
             </p>
             <button className="get-started">Get Started ↗</button>
           </div>
+
+          <div className="image-box">
+            <img src={badge} alt="Security badge" />
+          </div>
         </main>
       </div>
     </div>
   );
 }
-
