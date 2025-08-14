@@ -1,25 +1,30 @@
 import "./loading.css";
 import logo from "../../assets/logo.png";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export default function Home() {
-    const [loading, setLoading] = useState(true);
-    const [percent, setPercent] = useState(0);
+type FileMeta = { name: string; size: number; type: string };
+type LocState = { filesMeta?: FileMeta[] };
+
+export default function Loading() {
+    const nav = useNavigate();
+    const { state } = useLocation();
+    const filesMeta: FileMeta[] = (state as LocState)?.filesMeta ?? [];
 
     useEffect(() => {
-        if (!loading) return;
-        const timer = setInterval(() => {
-            setPercent(prev => {
-                const next = Math.min(prev + 10, 100);
-                if (next === 100) {
-                    clearInterval(timer);
-                    setLoading(false);
-                }
-                return next;
-            });
-        }, 500);
-        return () => clearInterval(timer);
-    }, [loading]);
+        if (!filesMeta.length) {
+            nav("/upload", { replace: true });
+            return;
+        }
+
+        // ================================
+        // 🔹 백엔드 연동 지점
+        // 1. 분석 시작 요청 (예: POST /analysis)
+        // 2. 진행률 수신 시 상태 업데이트
+        // 3. 완료 시 결과 데이터(result)와 함께:
+        //    nav("/download", { replace: true, state: { result } });
+        // ================================
+    }, [filesMeta, nav]);
 
     return (
         <div className="wrapper">
@@ -28,7 +33,7 @@ export default function Home() {
                     <div className="left-box">
                         <img src={logo} alt="LV.0 Logo" className="logo" />
                         <nav className="nav-group" aria-label="Primary">
-                            <a href="#home" className="nav-item">home</a>
+                            <Link to="/" className="nav-item">home</Link>
                             <a href="#about" className="nav-item">about</a>
                             <a href="#how" className="nav-item">how it works</a>
                             <a href="#project" className="nav-item">project</a>
@@ -45,15 +50,13 @@ export default function Home() {
                 </header>
 
                 <main className="main">
-                    {loading && (
-                        <div className="inline-loading">
-                            <div className="spinner-bars">
-                                <span /><span /><span /><span />
-                                <span /><span /><span /><span />
-                            </div>
-                            <p className="loading-text">Analyzing ...</p>
+                    <div className="inline-loading">
+                        <div className="spinner-bars">
+                            <span /><span /><span /><span />
+                            <span /><span /><span /><span />
                         </div>
-                    )}
+                        <p className="loading-text">Analyzing ...</p>
+                    </div>
                 </main>
             </div>
         </div>

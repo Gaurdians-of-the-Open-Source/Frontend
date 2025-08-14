@@ -8,8 +8,9 @@ import { BsTrash } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { ImSpinner3 } from "react-icons/im";
 import { CgCheckO } from "react-icons/cg";
+import { Link, useNavigate } from "react-router-dom";
 
-// 1) 파일 아이템 타입 정의
+// 1) 파일 아이템 타입 정의 (기존 유지)
 type UploadStatus = "ready" | "uploading" | "done" | "error" | "canceled";
 interface FileItem {
   id: string;
@@ -23,20 +24,35 @@ export default function Upload() {
   const [files, setFiles] = useState<FileItem[]>([]);
   // 3) useRef에 타입 명시
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
-  // 파일 추가 (중복 검사 포함)
+  // 파일 추가 (중복 검사 포함) + 추가 직후 /loading 이동
   const addFiles = (newFiles: FileList | File[]) => {
-    const fileArr = Array.from(newFiles);
+    const incoming = Array.from(newFiles);
+
+    // 현재 상태 기준으로 nextFiles 계산 (중복 제거)
     setFiles((prev) => {
-      const existingNames = prev.map((f) => f.file.name);
-      const filtered = fileArr.filter((f) => !existingNames.includes(f.name));
+      const existingNames = new Set(prev.map((f) => f.file.name));
+      const filtered = incoming.filter((f) => !existingNames.has(f.name));
       const newFileObjs: FileItem[] = filtered.map((file) => ({
         id: `${file.name}-${file.lastModified}-${Math.random()}`,
         file,
         status: "ready",
         progress: 0,
       }));
-      return [...prev, ...newFileObjs];
+      const next = [...prev, ...newFileObjs];
+
+      // ★ 선택/드롭 직후 로딩 페이지로 이동 (파일 메타 전달)
+      const filesMeta = next.map((f) => ({
+        name: f.file.name,
+        size: f.file.size,
+        type: f.file.type,
+      }));
+      if (filesMeta.length > 0) {
+        navigate("/loading", { state: { filesMeta } });
+      }
+
+      return next;
     });
   };
 
@@ -83,8 +99,7 @@ export default function Upload() {
   // 이벤트 타입 명시
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) addFiles(e.target.files);
-    // value는 string 타입 → ''로 초기화
-    e.target.value = "";
+    e.target.value = ""; // 같은 파일 다시 선택할 수 있게 초기화
   };
 
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -101,12 +116,13 @@ export default function Upload() {
         <header className="header">
           <div className="left-box">
             <img src={logo} alt="LV.0 Logo" className="logo" />
-            <div className="nav-group">
-              <a href="#home" className="nav-item">home</a>
+            <nav className="nav-group">
+              {/* SPA 라우팅 */}
+              <Link to="/" className="nav-item">home</Link>
               <a href="#about" className="nav-item">about</a>
               <a href="#how" className="nav-item">how it works</a>
               <a href="#project" className="nav-item">project</a>
-            </div>
+            </nav>
           </div>
 
           <div className="right-buttons">
@@ -145,7 +161,7 @@ export default function Upload() {
             />
           </div>
 
-          {/* 파일 리스트 */}
+          {/* (선택) 파일 리스트 미리보기 – 여기까지는 화면에 잠깐 보였다가 /loading으로 이동 */}
           <div style={{ width: "500px" }}>
             {files.length === 0 && (
               <div style={{ textAlign: "center", color: "#777", marginTop: "1rem", fontSize: "18px" }}>

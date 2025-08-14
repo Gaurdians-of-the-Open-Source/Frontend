@@ -99,10 +99,11 @@
   justify-content: flex-start;
   align-items: center;
   height: 70%;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 2rem 4rem;
   gap: 3rem;
   padding-right: 300px;
   flex-wrap: nowrap;
+  transform: translateY(-30px);
 }
 
 .text-box {
@@ -110,7 +111,7 @@
   width: 720px;
   max-width: none;
   text-align: left;
-  margin: 35px;
+  margin: 40px;
   transform: none;
 }
 
@@ -147,10 +148,10 @@
 
 .image-box {
   position: absolute;
-  right: 12%;
-  bottom: 13%;
+  right: 10%;
+  bottom: 27%;
   width: 30%;
-  height: auto;
+  height: 70%;
   display: block;
   pointer-events: none;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
