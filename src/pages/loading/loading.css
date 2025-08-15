@@ -104,6 +104,8 @@
     align-items: center;
     gap: 5px;
     margin-top: 60px;
+    transform: translateX(-130%);
+    /* 새로 추가 */
 }
 
 .spinner-bars {
