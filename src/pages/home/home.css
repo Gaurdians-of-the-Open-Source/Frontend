@@ -96,12 +96,12 @@
 
 .main {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   height: 70%;
   padding: 0.5rem 2rem 4rem;
   gap: 3rem;
-  padding-right: 300px;
+  padding-right: 100px;
   flex-wrap: nowrap;
   transform: translateY(-30px);
 }
@@ -148,7 +148,7 @@
 
 .image-box {
   position: absolute;
-  right: 10%;
+  right: 10px;
   bottom: 27%;
   width: 30%;
   height: 70%;
@@ -156,6 +156,7 @@
   pointer-events: none;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12));
   transform: translateZ(0);
+  right: -50px;
 }
 
 .image-box img {
