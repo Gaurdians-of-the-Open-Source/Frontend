@@ -4,11 +4,14 @@ import { FiDownload, FiUpload } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 type ResultFile = { name: string; size: number; type: string };
+
+// 백엔드가 보내줄 필드만 남김 (+ 선택: 다운로드 링크)
 type Result = {
     summary: string;
     count: number;
     files: ResultFile[];
-    createdAt: number;
+    createdAt: number;          // ms
+    reportUrl?: string;         // 선택: 백엔드가 생성한 리포트 다운로드 URL
 };
 
 export default function Download() {
@@ -18,24 +21,13 @@ export default function Download() {
 
     const handleDownloadReport = () => {
         if (!result) return;
-        const blob = new Blob([JSON.stringify(result, null, 2)], {
-            type: "application/json;charset=utf-8",
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `lv0-report-${new Date(result.createdAt)
-            .toISOString()
-            .slice(0, 19)
-            .replace(/[:T]/g, "-")}.json`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-    };
-
-    const handleUploadAnother = () => {
-        navigate("/upload");
+        // ✅ 백엔드 연동: 서버가 내려준 URL로 다운로드
+        if (result.reportUrl) {
+            window.open(result.reportUrl, "_blank");
+        } else {
+            // TODO: 백엔드에서 reportUrl 내려주면 위 줄만 남기고 아래 안내는 삭제
+            console.warn("reportUrl이 없습니다. 백엔드 연동 후 이 경고를 제거하세요.");
+        }
     };
 
     return (
@@ -71,9 +63,7 @@ export default function Download() {
 
                             <div className="report-scroll">
                                 {!result ? (
-                                    <div className="empty-report">
-                                        표시할 결과가 없어요. 업로드를 먼저 진행해 주세요.
-                                    </div>
+                                    <div className="empty-report">표시할 결과가 없어요.</div>
                                 ) : (
                                     <>
                                         <div className="report-meta">
@@ -82,18 +72,20 @@ export default function Download() {
                                             <div><strong>Summary:</strong> {result.summary}</div>
                                         </div>
 
-                                        <div className="report-section">
-                                            <h3>Analyzed Files</h3>
-                                            <ul className="file-list">
-                                                {result.files.map((f, i) => (
-                                                    <li key={`${f.name}-${i}`} className="file-item">
-                                                        <span className="file-name">{f.name}</span>
-                                                        <span className="file-size">{(f.size / 1024).toFixed(1)} KB</span>
-                                                        <span className="file-type">{f.type || "unknown"}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                        {result.files?.length > 0 && (
+                                            <div className="report-section">
+                                                <h3>Analyzed Files</h3>
+                                                <ul className="file-list">
+                                                    {result.files.map((f, i) => (
+                                                        <li key={`${f.name}-${i}`} className="file-item">
+                                                            <span className="file-name">{f.name}</span>
+                                                            <span className="file-size">{(f.size / 1024).toFixed(1)} KB</span>
+                                                            <span className="file-type">{f.type || "unknown"}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
                                     </>
                                 )}
                             </div>
@@ -135,11 +127,10 @@ export default function Download() {
                                     <span>Report Download</span>
                                 </button>
 
-                                {/* 이 버튼을 눌러야만 업로드 페이지로 이동 */}
                                 <button
                                     className="btn pill ghost"
                                     type="button"
-                                    onClick={handleUploadAnother}
+                                    onClick={() => navigate("/upload")}
                                 >
                                     <FiUpload className="btn-ic-left" />
                                     <span>Upload Another File</span>
