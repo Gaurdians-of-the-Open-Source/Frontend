@@ -10,27 +10,24 @@ import { ImSpinner3 } from "react-icons/im";
 import { CgCheckO } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 
-// 1) 파일 아이템 타입 정의 (기존 유지)
+// 파일 아이템 타입 정의
 type UploadStatus = "ready" | "uploading" | "done" | "error" | "canceled";
 interface FileItem {
   id: string;
   file: File;
   status: UploadStatus;
-  progress: number; // 0~100
+  progress: number;
 }
 
 export default function Upload() {
-  // 2) useState에 제네릭 타입 명시
   const [files, setFiles] = useState<FileItem[]>([]);
-  // 3) useRef에 타입 명시
   const inputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
 
-  // 파일 추가 (중복 검사 포함) + 추가 직후 /loading 이동
+  // 파일 추가 (중복 검사)
   const addFiles = (newFiles: FileList | File[]) => {
     const incoming = Array.from(newFiles);
 
-    // 현재 상태 기준으로 nextFiles 계산 (중복 제거)
     setFiles((prev) => {
       const existingNames = new Set(prev.map((f) => f.file.name));
       const filtered = incoming.filter((f) => !existingNames.has(f.name));
@@ -40,19 +37,7 @@ export default function Upload() {
         status: "ready",
         progress: 0,
       }));
-      const next = [...prev, ...newFileObjs];
-
-      // ★ 선택/드롭 직후 로딩 페이지로 이동 (파일 메타 전달)
-      const filesMeta = next.map((f) => ({
-        name: f.file.name,
-        size: f.file.size,
-        type: f.file.type,
-      }));
-      if (filesMeta.length > 0) {
-        navigate("/loading", { state: { filesMeta } });
-      }
-
-      return next;
+      return [...prev, ...newFileObjs];
     });
   };
 
@@ -96,18 +81,29 @@ export default function Upload() {
     }, 300);
   };
 
-  // 이벤트 타입 명시
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) addFiles(e.target.files);
-    e.target.value = ""; // 같은 파일 다시 선택할 수 있게 초기화
+    e.target.value = "";
   };
 
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (e.dataTransfer.files) addFiles(e.dataTransfer.files);
   };
+
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+  };
+
+  // Start analyzing 버튼
+  const handleStartAnalyzing = () => {
+    if (!files.length) return;
+    const filesMeta = files.map((f) => ({
+      name: f.file.name,
+      size: f.file.size,
+      type: f.file.type,
+    }));
+    navigate("/loading", { state: { filesMeta } });
   };
 
   return (
@@ -117,7 +113,6 @@ export default function Upload() {
           <div className="left-box">
             <img src={logo} alt="LV.0 Logo" className="logo" />
             <nav className="nav-group">
-              {/* SPA 라우팅 */}
               <Link to="/" className="nav-item">home</Link>
               <a href="#about" className="nav-item">about</a>
               <a href="#how" className="nav-item">how it works</a>
@@ -134,7 +129,6 @@ export default function Upload() {
           </div>
         </header>
 
-        {/* 메인 컨텐츠 */}
         <div className="main">
           {/* 업로드 박스 */}
           <div
@@ -161,7 +155,7 @@ export default function Upload() {
             />
           </div>
 
-          {/* (선택) 파일 리스트 미리보기 – 여기까지는 화면에 잠깐 보였다가 /loading으로 이동 */}
+          {/* 파일 리스트 + Start analyzing 버튼 */}
           <div style={{ width: "500px" }}>
             {files.length === 0 && (
               <div style={{ textAlign: "center", color: "#777", marginTop: "1rem", fontSize: "18px" }}>
@@ -230,6 +224,17 @@ export default function Upload() {
                 <div className="file-progress-text">{progress}%</div>
               </div>
             ))}
+
+            {/* Start analyzing 버튼 */}
+            <div className="analyze-cta">
+              <button
+                className="analyze-btn"
+                disabled={!files.length}
+                onClick={handleStartAnalyzing}
+              >
+                Start analyzing
+              </button>
+            </div>
           </div>
         </div>
       </div>

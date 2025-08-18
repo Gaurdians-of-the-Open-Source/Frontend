@@ -94,17 +94,13 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 메인 중앙 정렬 */
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* 세로 중앙 */
   align-items: flex-end;
-  /* 가로 중앙 */
   gap: 20px;
-  /* 박스 간격 */
 }
 
 .upload-box {
@@ -171,7 +167,6 @@
   transform: scale(0.98);
 }
 
-/* 추가된 다운로드 박스 */
 .download-box {
   width: 500px;
   height: 90px;
@@ -303,4 +298,39 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.analyze-cta {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.analyze-btn {
+  background: rgba(186, 164, 255, 0.3);
+  color: #13113b;
+  padding: 9.5px 20px;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.analyze-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(186, 164, 255, 0.5);
+}
+
+.analyze-btn:active {
+  transform: scale(0.98);
+}
+
+.analyze-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }

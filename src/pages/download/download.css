@@ -139,7 +139,6 @@
     color: #000033;
 }
 
-/* 스크롤 영역 */
 .report-scroll {
     margin-top: 12px;
     flex: 1 1 auto;
@@ -213,8 +212,8 @@
 .btn {
     height: 64px;
     border: none;
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 500;
     display: inline-flex;
     align-items: center;
     justify-content: center;
